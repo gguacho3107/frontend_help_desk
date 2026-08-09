@@ -1,0 +1,34 @@
+<div>
+  <h2>Tickets Reportados</h2>
+
+  <div class="table-container">
+    <table>
+      <thead>
+      <tr>
+        <th>Título</th>
+        <th>Descripcion</th>
+        <th>Categoría</th>
+        <th>Prioridad</th>
+        <th>Estado</th>
+        <th>Fecha</th>
+      </tr>
+      </thead>
+      <tbody>
+        @for (t of tickets(); track t.id){
+          <tr>
+            <td>{{ t.title }}</td>
+            <td>{{ t.description }}</td>
+            <td>{{ t.category }}</td>
+            <td>{{ t.priority }}</td>
+            <td>{{ t.status }}</td>
+            <td>{{ t.createdAt | date:'short' }}</td>
+          </tr>
+        } @empty {
+          <tr>
+            <td>No hay tickets abiertos</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,63 @@
+<div class="dashboard-wrapper">
+
+  <header>
+    <h2>Panel de Control</h2>
+    <p>Resumen general de incidentes</p>
+  </header>
+
+
+  <div class="kpi-row">
+    <div class="kpi-card">
+      <span>Total Incidentes</span>
+      <strong>{{ kpis().total }}</strong>
+    </div>
+    <div class="kpi-card accent-blue">
+      <span>Abiertos</span>
+      <strong>{{ kpis().open }}</strong>
+    </div>
+    <div class="kpi-card accent-red">
+      <span>Urgentes</span>
+      <strong>{{ kpis().urgent }}</strong>
+    </div>
+  </div>
+
+
+  <div class="segments-row">
+
+    <section class="segment-card">
+      <h3>Incidentes por Categoría</h3>
+      <div class="stats-container">
+        @for (stat of categoryStats(); track stat.name) {
+          <div class="stat-item">
+            <div class="stat-header">
+              <span>{{ stat.name }}</span>
+              <span>{{ stat.count }} tickets</span>
+            </div>
+            <div class="progress-track">
+              <div class="progress-fill" [style.width.%]="stat.percentage"></div>
+            </div>
+          </div>
+        }
+      </div>
+    </section>
+
+    <section class="segment-card">
+      <h3>Actividad Reciente</h3>
+      <div class="recent-list">
+        @for (ticket of recentTickets(); track ticket.id) {
+          <div class="ticket-row">
+            <div class="ticket-info">
+              <strong>TCK - {{ ticket.id }}</strong>
+              <span>{{ ticket.title }}</span>
+            </div>
+            <div class="ticket-badges">
+              <span class="badge" [class.badge-urgent]="ticket.priority === 'ALTA'">
+                {{ ticket.priority }}
+              </span>
+            </div>
+          </div>
+        }
+      </div>
+    </section>
+  </div>
+</div>

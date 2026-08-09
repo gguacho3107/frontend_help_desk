@@ -1,0 +1,7 @@
+@if (alertService.alertState().message !== '') {
+  <div class="alert-box"
+       [class.success]="alertService.alertState().type === 'success'"
+       [class.error]="alertService.alertState().type === 'error'">
+    {{ alertService.alertState().message }}
+  </div>
+}

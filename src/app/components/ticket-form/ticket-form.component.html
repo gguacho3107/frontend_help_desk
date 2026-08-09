@@ -1,0 +1,65 @@
+<form [formGroup]="ticketForm" (ngSubmit)="onSubmit()" name="reportIssueForm" enctype="application/x-www-form-urlencoded">
+  <div class="grid-layout">
+    <fieldset>
+      <legend>Reportar Incidente</legend>
+      <div >
+        <label for="titleIssue">Titulo del incidente: </label>
+        <input type="text" name="title" id="titleIssue" formControlName="title" required
+               [class.is-invalid]="ticketForm.get('title')?.invalid && ticketForm.get('title')?.touched"] placeholder="Ej: No se conecta a internet">
+        @if (ticketForm.get('title')?.invalid && ticketForm.get('title')?.touched) {
+          <div class="error-message">
+            @if (ticketForm.get('title')?.hasError('required')){
+              <span>El titulo es requerido.</span>
+            }
+            @if (ticketForm.get('title')?.hasError('minLength')){
+              <span>El titulo debe tener al menos 5 caracteres.</span>
+            }
+          </div>
+        }
+      </div>
+      <div>
+        <label for="categoryIssue">Categoria: </label>
+        <select name="category" id="categoryIssue" formControlName="category" required
+                [class.is-invalid]="ticketForm.get('category')?.invalid && ticketForm.get('category')?.touched">
+          <option [ngValue]="null" disabled selected>Seleccione una categoria</option>
+          <option value="HARDWARE">HARDWARE</option>
+          <option value="SOFTWARE">SOFTWARE</option>
+          <option value="RED">RED</option>
+        </select>
+
+        @if (ticketForm.get('category')?.invalid && ticketForm.get('category')?.touched) {
+          <div class="error-message">Por favor, selecciona una categoría.</div>
+        }
+      </div>
+      <div role="radiogroup" aria-labelledby="priorityLabel">
+        <label id="priorityLabel">Nivel de prioridad: </label>
+        <div>
+          <input type="radio" name="priority" id="lowPriority" value="BAJA" formControlName="priority">
+          <label for="lowPriority">Baja</label>
+        </div>
+        <div>
+          <input type="radio" name="priority" id="mediumPriority" value="MEDIA" formControlName="priority">
+          <label for="mediumPriority">Media</label>
+        </div>
+        <div>
+          <input type="radio" name="priority" id="highPriority" value="ALTA" formControlName="priority">
+          <label for="highPriority">Alta</label>
+        </div>
+      </div>
+      <div>
+        <label for="descriptionIssue">Descripcion detallada:</label>
+        <textarea name="descriptionIssue" id="descriptionIssue" cols="30" rows="10"  formControlName="description"
+                  required placeholder="Ingrese una descripcion detallada del error"
+                  [class.is-invalid]="ticketForm.get('description')?.invalid && ticketForm.get('description')?.touched"
+        ></textarea>
+
+        @if (ticketForm.get('description')?.invalid && ticketForm.get('description')?.touched) {
+          <div class="error-message">La descripción es obligatoria.</div>
+        }
+      </div>
+      <div>
+        <button type="submit" >Enviar</button>
+      </div>
+    </fieldset>
+  </div>
+</form>

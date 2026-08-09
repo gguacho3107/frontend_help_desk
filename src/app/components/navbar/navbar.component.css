@@ -1,0 +1,76 @@
+/* Mobile First: Barra superior */
+:host {
+  display: block;
+  width: 100%;
+}
+
+header {
+  background-color: var(--bg-surface);
+  padding: 20px;
+  text-align: center;
+  border-bottom: 2px solid var(--accent-primary);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+nav {
+  background-color: var(--bg-input);
+  padding: 10px 0;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+}
+
+nav a {
+  color: var(--text-primary);
+  text-decoration: none;
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: var(--border-radius);
+  transition: var(--transition);
+}
+
+nav a:hover, nav a.active {
+  background-color: var(--accent-primary);
+  color: #fff;
+}
+
+/* Escritorios (min-width: 900px): Navbar lateral izquierdo */
+@media (min-width: 900px) {
+  :host {
+    width: 280px;
+    flex-shrink: 0;
+    border-right: 2px solid var(--accent-primary);
+    background-color: var(--bg-surface);
+    min-height: 100vh;
+    box-shadow: 4px 0 12px rgba(0,0,0,0.3);
+  }
+
+  header {
+    border-bottom: none;
+    box-shadow: none;
+    padding: 30px 20px;
+  }
+
+  nav {
+    background-color: transparent;
+    padding: 0 20px;
+  }
+
+  nav ul {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  nav a {
+    display: block;
+    width: 100%;
+    text-align: left;
+  }
+}
