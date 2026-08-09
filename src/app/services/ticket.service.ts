@@ -5,7 +5,7 @@ import {ITicket} from '../models/ticket.model';
 
 @Injectable({providedIn: 'root'})
 export class TicketService {
-  private apiUrl = 'http://localhost:8080/api/tickets';
+  private apiUrl = 'https://backend-help-desk.onrender.com/api/tickets';
 
   constructor(private http: HttpClient) { }
 
